@@ -28,4 +28,70 @@ class Campo {
       vizinhos.add(vizinho);
     }
   }
+
+  void abrir() {
+    if (_aberto) {
+      return;
+    }
+
+    _aberto = true;
+
+    if (_minado) {
+      _explodido = true;
+    }
+
+    if (vizinhancaSegura) {
+      vizinhos.forEach((vizinho) {
+        vizinho.abrir();
+      });
+    }
+  }
+
+  void revelarBombas() {
+    if (_minado) {
+      _aberto = true;
+    }
+  }
+
+  void minar() {
+    _minado = true;
+  }
+
+  void alternarMarcacao() {
+    _marcado = !_marcado;
+  }
+
+  void reiniciar() {
+    _aberto = false;
+    _marcado = false;
+    _minado = false;
+    _explodido = false;
+  }
+
+  bool get minado {
+    return _minado;
+  }
+
+  bool get explodido {
+    return _explodido;
+  }
+
+  bool get marcado {
+    return _marcado;
+  }
+
+  bool get resolvido {
+    bool minadoEMarcado = _minado && _marcado;
+    bool seguroEAberto = !_minado && _aberto;
+
+    return minadoEMarcado || seguroEAberto;
+  }
+
+  bool get vizinhancaSegura {
+    return vizinhos.every((vizinho) => !vizinho._minado);
+  }
+
+  int get qtdeMinasNaVizinhanca {
+    return vizinhos.where((vizinho) => vizinho.minado).length;
+  }
 }
