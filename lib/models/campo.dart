@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'explosao_exception.dart';
 
 class Campo {
@@ -38,16 +37,17 @@ class Campo {
 
     if (_minado) {
       _explodido = true;
+      throw ExplosaoException();
     }
 
     if (vizinhancaSegura) {
-      vizinhos.forEach((vizinho) {
-        vizinho.abrir();
-      });
+      for (var v in vizinhos) {
+        v.abrir();
+      }
     }
   }
 
-  void revelarBombas() {
+  void revelarBomba() {
     if (_minado) {
       _aberto = true;
     }
@@ -78,6 +78,10 @@ class Campo {
 
   bool get marcado {
     return _marcado;
+  }
+
+  bool get aberto {
+    return _aberto;
   }
 
   bool get resolvido {
