@@ -9,12 +9,14 @@ main() {
 
       expect(c.abrir, throwsException);
     });
+
     test('Abrir campo SEM explosão', () {
       Campo c = Campo(linha: 0, coluna: 0);
       c.abrir();
 
       expect(c.aberto, isTrue);
     });
+
     test('Adicionar NÃO vizinho', () {
       Campo c1 = Campo(linha: 0, coluna: 0);
       Campo c2 = Campo(linha: 1, coluna: 3);
@@ -22,6 +24,7 @@ main() {
 
       expect(c1.vizinhos.isEmpty, isTrue);
     });
+
     test('Adicionar vizinho', () {
       Campo c1 = Campo(linha: 3, coluna: 3);
       Campo c2 = Campo(linha: 3, coluna: 4);
