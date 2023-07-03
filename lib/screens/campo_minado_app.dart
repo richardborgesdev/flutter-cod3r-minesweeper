@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cod3r_minesweeper/models/explosao_exception.dart';
+import 'package:flutter_cod3r_minesweeper/components/tabuleiro_widget.dart';
+import 'package:flutter_cod3r_minesweeper/models/tabuleiro.dart';
 import '../components/resultado_widget.dart';
-import '../components/campo_widget.dart';
 import '../models/campo.dart';
 
 class CampoMinadoApp extends StatelessWidget {
@@ -21,28 +21,28 @@ class CampoMinadoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Campo campo = Campo(
-      linha: 0,
-      coluna: 0,
-    );
-    Campo vizinho1 = Campo(
-      linha: 1,
-      coluna: 0,
-    );
-    vizinho1.minar();
-    Campo vizinho2 = Campo(
-      linha: 1,
-      coluna: 1,
-    );
-    vizinho2.minar();
+    // Campo campo = Campo(
+    //   linha: 0,
+    //   coluna: 0,
+    // );
+    // Campo vizinho1 = Campo(
+    //   linha: 1,
+    //   coluna: 0,
+    // );
+    // vizinho1.minar();
+    // Campo vizinho2 = Campo(
+    //   linha: 1,
+    //   coluna: 1,
+    // );
+    // vizinho2.minar();
 
-    campo.adicionarVizinho(vizinho1);
-    campo.adicionarVizinho(vizinho2);
+    // campo.adicionarVizinho(vizinho1);
+    // campo.adicionarVizinho(vizinho2);
 
-    try {
-      // campo.minar();
-      campo.alternarMarcacao();
-    } on ExplosaoException {}
+    // try {
+    //   // campo.minar();
+    //   campo.alternarMarcacao();
+    // } on ExplosaoException {}
 
     return MaterialApp(
       home: Scaffold(
@@ -51,8 +51,12 @@ class CampoMinadoApp extends StatelessWidget {
           onReiniciar: _reiniciar,
         ),
         body: Container(
-          child: CampoWidget(
-            campo: campo,
+          child: TabuleiroWidget(
+            tabuleiro: Tabuleiro(
+              linhas: 3,
+              colunas: 3,
+              qtdeBombas: 0,
+            ),
             onAbrir: _abrir,
             onAlternarMarcacao: _alternarMarcacao,
           ),
