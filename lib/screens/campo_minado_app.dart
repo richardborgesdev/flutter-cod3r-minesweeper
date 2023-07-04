@@ -4,8 +4,20 @@ import 'package:flutter_cod3r_minesweeper/models/tabuleiro.dart';
 import '../components/resultado_widget.dart';
 import '../models/campo.dart';
 
-class CampoMinadoApp extends StatelessWidget {
+class CampoMinadoApp extends StatefulWidget {
   const CampoMinadoApp({super.key});
+
+  @override
+  State<CampoMinadoApp> createState() => _CampoMinadoAppState();
+}
+
+class _CampoMinadoAppState extends State<CampoMinadoApp> {
+  bool _venceu = false;
+  Tabuleiro _tabuleiro = Tabuleiro(
+    linhas: 12,
+    colunas: 12,
+    qtdeBombas: 3,
+  );
 
   void _reiniciar() {
     print('reiniciar');
@@ -21,42 +33,15 @@ class CampoMinadoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Campo campo = Campo(
-    //   linha: 0,
-    //   coluna: 0,
-    // );
-    // Campo vizinho1 = Campo(
-    //   linha: 1,
-    //   coluna: 0,
-    // );
-    // vizinho1.minar();
-    // Campo vizinho2 = Campo(
-    //   linha: 1,
-    //   coluna: 1,
-    // );
-    // vizinho2.minar();
-
-    // campo.adicionarVizinho(vizinho1);
-    // campo.adicionarVizinho(vizinho2);
-
-    // try {
-    //   // campo.minar();
-    //   campo.alternarMarcacao();
-    // } on ExplosaoException {}
-
     return MaterialApp(
       home: Scaffold(
         appBar: ResultadoWidget(
-          venceu: true,
+          venceu: _venceu,
           onReiniciar: _reiniciar,
         ),
         body: Container(
           child: TabuleiroWidget(
-            tabuleiro: Tabuleiro(
-              linhas: 3,
-              colunas: 3,
-              qtdeBombas: 0,
-            ),
+            tabuleiro: _tabuleiro,
             onAbrir: _abrir,
             onAlternarMarcacao: _alternarMarcacao,
           ),
