@@ -49,7 +49,7 @@ class Tabuleiro {
   void _sortearMinas() {
     int sorteadas = 0;
 
-    if (qtdeBombas < linhas * colunas) {
+    if (qtdeBombas > linhas * colunas) {
       return;
     }
 
