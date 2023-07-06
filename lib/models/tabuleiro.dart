@@ -33,7 +33,12 @@ class Tabuleiro {
   void _criarCampos() {
     for (var linha = 0; linha < linhas; linha++) {
       for (var coluna = 0; coluna < colunas; coluna++) {
-        _campos.add(Campo(linha: linha, coluna: coluna));
+        _campos.add(
+          Campo(
+            linha: linha,
+            coluna: coluna,
+          ),
+        );
       }
     }
   }
